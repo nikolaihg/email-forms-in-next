@@ -3,12 +3,12 @@
 import { useState } from "react";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", age: "", position: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseMessage, setResponseMessage] = useState<string | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -30,7 +30,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         setResponseMessage("Email sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", age: "", position: "", message: "" });
       } else {
         setResponseMessage(result.message || "Something went wrong.");
       }
@@ -85,6 +85,51 @@ const ContactForm = () => {
       </div>
       <div className="flex flex-col gap-2">
         <label
+          htmlFor="age"
+          className="text-sm font-medium font-[family-name:var(--font-geist-mono)]"
+        >
+          Age
+        </label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          placeholder="Enter your age"
+          value={formData.age}
+          onChange={handleChange}
+          min="0"
+          max="99"
+          required
+          className="border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none font-[family-name:var(--font-geist-sans)] text-black"
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <label
+          htmlFor="position"
+          className="text-sm font-medium font-[family-name:var(--font-geist-mono)]"
+        >
+          Position
+        </label>
+        <select
+          id="position"
+          name="position"
+          value={formData.position}
+          onChange={handleChange}
+          required
+          className="border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none font-[family-name:var(--font-geist-sans)] text-black"
+        >
+          <option value="" disabled>
+            Select a position
+          </option>
+          <option value="Position 1">Position 1</option>
+          <option value="Position 2">Position 2</option>
+          <option value="Position 3">Position 3</option>
+          <option value="Position 4">Position 4</option>
+          <option value="Position 5">Position 5</option>
+        </select>
+      </div>
+      <div className="flex flex-col gap-2">
+        <label
           htmlFor="message"
           className="text-sm font-medium font-[family-name:var(--font-geist-mono)]"
         >
@@ -93,6 +138,7 @@ const ContactForm = () => {
         <textarea
           id="message"
           name="message"
+          placeholder="Write your message here"
           value={formData.message}
           onChange={handleChange}
           required

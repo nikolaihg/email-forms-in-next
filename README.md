@@ -12,21 +12,15 @@ Steps to create the .env file with environment variables.
         EMAIL_USER=your-email@example.com
         EMAIL_PASS=your-email-password
         EMAIL_TO=recipient@example.com
+        SMTP_HOST=smtp.example.com
+        SMTP_PORT=587
         ```
 
-First, run the development server:
+running the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

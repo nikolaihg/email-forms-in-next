@@ -62,8 +62,8 @@ export default function RootLayout({
             > 
             <Image
                 aria-hidden
-                src="/file.svg"
-                alt="File icon"
+                src="/window.svg"
+                alt="Window icon"
                 width={16}
                 height={16}
               />
